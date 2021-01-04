@@ -1,0 +1,194 @@
+<script type="text/javascript">
+  RED.nodes.registerType('stein-config', {
+    category: 'config',
+    defaults: {
+      name: { value: "" }
+    },
+    label: function () {
+      return this.name || "stein";
+    },
+    credentials: {
+      apiurl: { type: "text" }
+    }
+  });
+</script>
+
+<script type="text/x-red" data-template-name="stein-config">
+
+  <div class="form-row">
+    <label for="node-config-input-name"><i class="icon-tag"></i> API Name</label>
+    <input type="text" id="node-config-input-name" placeholder="Name">
+  </div>
+
+  <div class="form-row">
+    <label for="node-config-input-apiurl"><i class="icon-tag"></i> API URL</label>
+    <input type="text" id="node-config-input-apiurl">
+  </div>
+
+</script>
+
+<script type="text/javascript">
+  RED.nodes.registerType('stein-get', {
+    category: 'function',
+    color: '#E9967A',
+    defaults: {
+      name: { value: "" },
+      sheet: { value: "" },
+      apiurl: { value: "", type: "stein-config" }
+    },
+    inputs: 1,
+    outputs: 1,
+    icon: "arrow-in.png",
+    label: function () {
+      return this.name || "stein get";
+    }
+  });
+</script>
+
+<script type="text/x-red" data-template-name="stein-get">
+
+  <div class="form-row">
+    <label for="node-input-apiurl"><i class="icon-tag"></i> API URL</label>
+    <input type="text" id="node-input-apiurl">
+  </div>
+
+  <div class="form-row">
+    <label for="node-input-sheet"><i class="icon-tag"></i> Sheet Name</label>
+    <input type="text" id="node-input-sheet" placeholder="Sheet">
+  </div>
+  
+  <div class="form-row">
+    <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name">
+  </div>
+  </script>
+
+<script type="text/x-red" data-help-name="stein-get">
+  <p>stein get</p>
+</script>
+
+<script type="text/javascript">
+  RED.nodes.registerType('stein-search', {
+    category: 'function',
+    color: '#E9967A',
+    defaults: {
+      name: { value: "" },
+      sheet: { value: "" },
+      search: { value: "" },
+      apiurl: { value: "", type: "stein-config" }
+    },
+    inputs: 1,
+    outputs: 1,
+    icon: "arrow-in.png",
+    label: function () {
+      return this.name || "stein search";
+    }
+  });
+</script>
+
+<script type="text/x-red" data-template-name="stein-search">
+
+  <div class="form-row">
+    <label for="node-input-apiurl"><i class="icon-tag"></i> API URL</label>
+    <input type="text" id="node-input-apiurl">
+  </div>
+
+  <div class="form-row">
+    <label for="node-input-sheet"><i class="icon-tag"></i> Sheet Name</label>
+    <input type="text" id="node-input-sheet" placeholder="Sheet">
+  </div>
+
+  <div class="form-row">
+    <label for="node-input-search"><i class="icon-tag"></i> Search Word</label>
+    <input type="text" id="node-input-search" placeholder="Search Word">
+  </div>
+  
+  <div class="form-row">
+    <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name">
+  </div>
+  </script>
+
+<script type="text/x-red" data-help-name="stein-search">
+  <p>stein search</p>
+</script>
+
+<script type="text/javascript">
+  RED.nodes.registerType('stein-addrows', {
+    category: 'function',
+    color: '#E9967A',
+    defaults: {
+      name: { value: "" },
+      sheet: { value: "" },
+      apiurl: { value: "", type: "stein-config" }
+    },
+    inputs: 1,
+    outputs: 1,
+    icon: "arrow-in.png",
+    label: function () {
+      return this.name || "stein addrows";
+    }
+  });
+</script>
+
+<script type="text/x-red" data-template-name="stein-addrows">
+
+  <div class="form-row">
+    <label for="node-input-apiurl"><i class="icon-tag"></i> API URL</label>
+    <input type="text" id="node-input-apiurl">
+  </div>
+
+  <div class="form-row">
+    <label for="node-input-sheet"><i class="icon-tag"></i> Sheet Name</label>
+    <input type="text" id="node-input-sheet" placeholder="Sheet">
+  </div>
+  
+  <div class="form-row">
+    <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name">
+  </div>
+  </script>
+
+<script type="text/x-red" data-help-name="stein-addrows">
+  <p>stein add rows to sheet</p>
+</script>
+
+<script type="text/javascript">
+  RED.nodes.registerType('stein-updaterows', {
+    category: 'function',
+    color: '#E9967A',
+    defaults: {
+      name: { value: "" },
+      sheet: { value: "" },
+      apiurl: { value: "", type: "stein-config" }
+    },
+    inputs: 1,
+    outputs: 1,
+    icon: "arrow-in.png",
+    label: function () {
+      return this.name || "stein updaterows";
+    }
+  });
+</script>
+
+<script type="text/x-red" data-template-name="stein-updaterows">
+
+  <div class="form-row">
+    <label for="node-input-apiurl"><i class="icon-tag"></i> API URL</label>
+    <input type="text" id="node-input-apiurl">
+  </div>
+
+  <div class="form-row">
+    <label for="node-input-sheet"><i class="icon-tag"></i> Sheet Name</label>
+    <input type="text" id="node-input-sheet" placeholder="Sheet">
+  </div>
+  
+  <div class="form-row">
+    <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name">
+  </div>
+  </script>
+
+<script type="text/x-red" data-help-name="stein-updaterows">
+  <p>stein update rows to sheet</p>
+</script>
