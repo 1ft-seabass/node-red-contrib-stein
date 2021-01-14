@@ -36,6 +36,10 @@ module.exports = function (RED) {
         params.offset = msg.offset;
       }
 
+      if (msg.sheet) {
+        params.sheet = msg.sheet;
+      }
+
       store.read(config.sheet, params).then(data => {
         this.status({ fill: "green", shape: "dot", text: "[" + this.current_setting.name + "] connected" });
         msg.payload = data;
@@ -72,14 +76,11 @@ module.exports = function (RED) {
         params.offset = msg.offset;
       }
 
-      // console.log("this.search", this.search);
-      // console.log("msg.search", msg.search);
-
-      if (this.search) {
-        params.search = this.search;
-      } else if (msg.search) {
-        params.search = msg.search;
+      if (msg.sheet) {
+        params.sheet = msg.sheet;
       }
+
+      params.search = msg.payload;
 
       store.read(config.sheet, params).then(data => {
         console.log("params", params);
@@ -139,17 +140,12 @@ module.exports = function (RED) {
 
       var params = {};
 
-      if (msg.limit) {
-        params.limit = msg.limit;
+      if (msg.sheet) {
+        params.sheet = msg.sheet;
       }
 
-      if (msg.search) {
-        params.search = msg.search;
-      }
-
-      if (msg.search) {
-        params.set = msg.set;
-      }
+      params.condition = msg.payload.condition;
+      params.set = msg.payload.set;
 
       store
         .edit(config.sheet, params)

@@ -38,7 +38,7 @@
     },
     inputs: 1,
     outputs: 1,
-    icon: "arrow-in.png",
+    icon: "font-awesome/fa-arrow-right",
     label: function () {
       return this.name || "stein get";
     }
@@ -64,7 +64,36 @@
   </script>
 
 <script type="text/x-red" data-help-name="stein-get">
-  <p>stein get</p>
+  <p>Read Data from Sheet.</p>
+
+  <h3>Inputs</h3>
+    <dl class="message-properties">
+      <dt class="optional">sheet <span class="property-type">string</span></dt>
+      <dd> The target sheet name.  (optional data)</dd>
+    </dl>
+
+    <dl class="message-properties">
+      <dt class="optional">limit <span class="property-type">number</span></dt>
+      <dd> Maximum number of rows to be returned.  (optional data)</dd>
+    </dl>
+
+    <dl class="message-properties">
+      <dt class="optional">offset <span class="property-type">number</span></dt>
+      <dd> Index of row from which response should start (default is 0).  (optional data)</dd>
+    </dl>
+
+  <h3>Outputs</h3>
+    <dl class="message-properties">
+      <dt>payload
+          <span class="property-type">array</span>
+      </dt>
+      <dd> The data retrieved from the Stein read API.</dd>
+    </dl>
+
+  <h3>References</h3>
+    <ul>
+        <li><a href="https://docs.steinhq.com/read-data" target="_blank">Read Data from Sheet</a> - Stein Docs</li>
+    </ul>
 </script>
 
 <script type="text/javascript">
@@ -74,12 +103,11 @@
     defaults: {
       name: { value: "" },
       sheet: { value: "" },
-      search: { value: "" },
       apiurl: { value: "", type: "stein-config" }
     },
     inputs: 1,
     outputs: 1,
-    icon: "arrow-in.png",
+    icon: "font-awesome/fa-search",
     label: function () {
       return this.name || "stein search";
     }
@@ -99,18 +127,47 @@
   </div>
 
   <div class="form-row">
-    <label for="node-input-search"><i class="icon-tag"></i> Search Word</label>
-    <input type="text" id="node-input-search" placeholder="Search Word">
-  </div>
-  
-  <div class="form-row">
     <label for="node-input-name"><i class="icon-tag"></i> Name</label>
     <input type="text" id="node-input-name" placeholder="Name">
   </div>
   </script>
 
 <script type="text/x-red" data-help-name="stein-search">
-  <p>stein search</p>
+  <p>Search for Data.</p>
+
+  <h3>Inputs</h3>
+    <dl class="message-properties">
+      <dt>payload <span class="property-type">object</span></dt>
+      <dd> The object data from your search option as <code>{column: value, ...}</code>. Refer to <a href="https://docs.steinhq.com/search-data" target="_blank">Search for Data</a> when you you would like to know the detail of search param. </dd>
+    </dl>
+    
+    <dl class="message-properties">
+      <dt class="optional">sheet <span class="property-type">string</span></dt>
+      <dd> The target sheet name.  (optional data)</dd>
+    </dl>
+
+    <dl class="message-properties">
+      <dt class="optional">limit <span class="property-type">number</span></dt>
+      <dd> Maximum number of rows to be returned.  (optional data)</dd>
+    </dl>
+
+    <dl class="message-properties">
+      <dt class="optional">offset <span class="property-type">number</span></dt>
+      <dd> Index of row from which response should start (default is 0).  (optional data)</dd>
+    </dl>
+
+  <h3>Outputs</h3>
+    <dl class="message-properties">
+      <dt>payload
+          <span class="property-type">array</span>
+      </dt>
+      <dd> The data retrieved from the Stein search API.</dd>
+    </dl>
+
+  <h3>References</h3>
+    <ul>
+        <li><a href="https://docs.steinhq.com/search-data" target="_blank">Search for Data</a> - Stein Docs</li>
+    </ul>
 </script>
 
 <script type="text/javascript">
@@ -124,7 +181,7 @@
     },
     inputs: 1,
     outputs: 1,
-    icon: "arrow-in.png",
+    icon: "font-awesome/fa-table",
     label: function () {
       return this.name || "stein addrows";
     }
@@ -150,7 +207,31 @@
   </script>
 
 <script type="text/x-red" data-help-name="stein-addrows">
-  <p>stein add rows to sheet</p>
+  <p>Add Rows to Sheet</p>
+
+  <h3>Inputs</h3>
+    <dl class="message-properties">
+      <dt>payload <span class="property-type">array</span></dt>
+      <dd> The array of objects representing your rows.</dd>
+    </dl>
+    
+    <dl class="message-properties">
+      <dt class="optional">sheet <span class="property-type">string</span></dt>
+      <dd> The target sheet name.  (optional data)</dd>
+    </dl>
+
+  <h3>Outputs</h3>
+    <dl class="message-properties">
+      <dt>payload
+          <span class="property-type">object</span>
+      </dt>
+      <dd>The updated range of your sheet is returned.</dd>
+    </dl>
+
+  <h3>References</h3>
+    <ul>
+        <li><a href="https://docs.steinhq.com/add-rows" target="_blank">Add Rows to Sheet</a> - Stein Docs</li>
+    </ul>
 </script>
 
 <script type="text/javascript">
@@ -164,7 +245,7 @@
     },
     inputs: 1,
     outputs: 1,
-    icon: "arrow-in.png",
+    icon: "font-awesome/fa-pencil",
     label: function () {
       return this.name || "stein updaterows";
     }
@@ -190,5 +271,34 @@
   </script>
 
 <script type="text/x-red" data-help-name="stein-updaterows">
-  <p>stein update rows to sheet</p>
+  <p>Update Rows</p>
+
+  <h3>Inputs</h3>
+    <dl class="message-properties">
+      <dt>payload.condition <span class="property-type">object</span></dt>
+      <dd> The value of the condition property is used to search for matching rows in the sheet.</dd>
+    </dl>
+
+    <dl class="message-properties">
+      <dt>payload.set <span class="property-type">object</span></dt>
+      <dd>If <code>payload.condition</code> data matched, the data updated matching rows.</dd>
+    </dl>
+    
+    <dl class="message-properties">
+      <dt class="optional">sheet <span class="property-type">string</span></dt>
+      <dd> The target sheet name.  (optional data)</dd>
+    </dl>
+
+  <h3>Outputs</h3>
+    <dl class="message-properties">
+      <dt>payload
+          <span class="property-type">object</span>
+      </dt>
+      <dd>The updated range of your sheet is returned.</dd>
+    </dl>
+
+  <h3>References</h3>
+    <ul>
+        <li><a href="https://docs.steinhq.com/update-rows" target="_blank">Update Rows</a> - Stein Docs</li>
+    </ul>
 </script>
