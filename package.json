@@ -16,7 +16,7 @@
     "type": "git",
     "url": "git+https://github.com/1ft-seabass/node-red-contrib-stein.git"
   },
-  "keywords": [],
+  "keywords": [ "node-red" , "stein"],
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -24,6 +24,6 @@
   },
   "homepage": "https://github.com/1ft-seabass/node-red-contrib-stein#readme",
   "dependencies": {
-    "stein-js-client": "0.0.2"
+    "stein-js-client": "0.0.3"
   }
 }
