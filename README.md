@@ -9,8 +9,14 @@ This is simple node for Stein.
 Move your Node-RED user directory ~/.node-red
 
 ```
-npm i --unsafe-perm node-red-contrib-stein
+npm i node-red-contrib-stein
 ```
+
+or
+
+* Go to "Palette Manager" menu on your Node-RED.
+* Search "node-red-contrib-stein" on Node-RED Library.
+* Click "Install".
 
 ## Usage
 
@@ -66,6 +72,13 @@ The Stein get node return status text in the bottom of node when you clicked the
 The node will return Sheet rows data this to the debug node.
 
 ![image](https://i.gyazo.com/85b70ea66cc52a3d7ad8bdd851a15371.png)
+
+## History
+
+* v 0.0.1
+  * First release
+* v 0.0.2
+  * 
 
 ## License
 
