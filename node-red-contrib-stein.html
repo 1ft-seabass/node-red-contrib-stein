@@ -275,13 +275,13 @@
 
   <h3>Inputs</h3>
     <dl class="message-properties">
-      <dt>payload.condition <span class="property-type">object</span></dt>
-      <dd> The value of the condition property is used to search for matching rows in the sheet.</dd>
+      <dt>payload.search <span class="property-type">object</span></dt>
+      <dd> The value of the search property is used to search for matching rows in the sheet.</dd>
     </dl>
 
     <dl class="message-properties">
       <dt>payload.set <span class="property-type">object</span></dt>
-      <dd>If <code>payload.condition</code> data matched, the data updated matching rows.</dd>
+      <dd>If <code>payload.search</code> data matched, the data updated matching rows.</dd>
     </dl>
     
     <dl class="message-properties">
@@ -300,5 +300,74 @@
   <h3>References</h3>
     <ul>
         <li><a href="https://docs.steinhq.com/update-rows" target="_blank">Update Rows</a> - Stein Docs</li>
+    </ul>
+</script>
+
+<script type="text/javascript">
+  RED.nodes.registerType('stein-deleterows', {
+    category: 'function',
+    color: '#E9967A',
+    defaults: {
+      name: { value: "" },
+      sheet: { value: "" },
+      apiurl: { value: "", type: "stein-config" }
+    },
+    inputs: 1,
+    outputs: 1,
+    icon: "font-awesome/fa-trash",
+    label: function () {
+      return this.name || "stein deleterows";
+    }
+  });
+</script>
+
+<script type="text/x-red" data-template-name="stein-deleterows">
+
+  <div class="form-row">
+    <label for="node-input-apiurl"><i class="icon-tag"></i> API URL</label>
+    <input type="text" id="node-input-apiurl">
+  </div>
+
+  <div class="form-row">
+    <label for="node-input-sheet"><i class="icon-tag"></i> Sheet Name</label>
+    <input type="text" id="node-input-sheet" placeholder="Sheet">
+  </div>
+  
+  <div class="form-row">
+    <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name">
+  </div>
+  </script>
+
+<script type="text/x-red" data-help-name="stein-deleterows">
+  <p>Update Rows</p>
+
+  <h3>Inputs</h3>
+    <dl class="message-properties">
+      <dt>payload.search <span class="property-type">object</span></dt>
+      <dd> The value of the search property is used to search for matching rows in the sheet. These matched rows are then deleted.</dd>
+    </dl>
+
+    <dl class="message-properties">
+      <dt class="optional">limit <span class="property-type">number</span></dt>
+      <dd> The number of rows deleted is limited as per the limit option.  (optional data)</dd>
+    </dl>
+    
+    <dl class="message-properties">
+      <dt class="optional">sheet <span class="property-type">string</span></dt>
+      <dd> The target sheet name.  (optional data)</dd>
+    </dl>
+
+  <h3>Outputs</h3>
+    <dl class="message-properties">
+      <dt>payload
+          <span class="property-type">object</span>
+      </dt>
+      <dd>The deleted range of your sheet is returned.</dd>
+    </dl>
+
+  <h3>References</h3>
+    <ul>
+        <li><a href="https://docs.steinhq.com/delete-rows" target="_blank">Delete Rows</a> - Stein Docs</li>
     </ul>
 </script>

@@ -35,12 +35,13 @@ module.exports = function (RED) {
       if (msg.offset) {
         params.offset = msg.offset;
       }
-
+      
+      let sheet = config.sheet;
       if (msg.sheet) {
-        params.sheet = msg.sheet;
+        sheet = msg.sheet;
       }
 
-      store.read(config.sheet, params).then(data => {
+      store.read(sheet, params).then(data => {
         this.status({ fill: "green", shape: "dot", text: "[" + this.current_setting.name + "] connected" });
         msg.payload = data;
         node.send(msg);
@@ -76,13 +77,14 @@ module.exports = function (RED) {
         params.offset = msg.offset;
       }
 
+      let sheet = config.sheet;
       if (msg.sheet) {
-        params.sheet = msg.sheet;
+        sheet = msg.sheet;
       }
 
       params.search = msg.payload;
 
-      store.read(config.sheet, params).then(data => {
+      store.read(sheet, params).then(data => {
         console.log("params", params);
         this.status({ fill: "green", shape: "dot", text: "[" + this.current_setting.name + "] connected" });
         msg.payload = data;
@@ -109,8 +111,13 @@ module.exports = function (RED) {
         this.apiurl
       );
 
+      let sheet = config.sheet;
+      if (msg.sheet) {
+        sheet = msg.sheet;
+      }
+
       store
-        .append(config.sheet, msg.payload)
+        .append(sheet, msg.payload)
         .then(res => {
           // console.log(res);
           this.status({ fill: "green", shape: "dot", text: "[" + this.current_setting.name + "] connected" });
@@ -144,11 +151,18 @@ module.exports = function (RED) {
         params.sheet = msg.sheet;
       }
 
-      params.condition = msg.payload.condition;
+      let sheet = config.sheet;
+      if (msg.sheet) {
+        sheet = msg.sheet;
+      }
+
+      params.search = msg.payload.search;
       params.set = msg.payload.set;
 
+      console.log(params);
+
       store
-        .edit(config.sheet, params)
+        .edit(sheet, params)
         .then(res => {
           // console.log(res);
           this.status({ fill: "green", shape: "dot", text: "[" + this.current_setting.name + "] connected" });
@@ -158,6 +172,48 @@ module.exports = function (RED) {
     });
   }
   RED.nodes.registerType("stein-updaterows", SteinUpdateRowsToSheet, {
+
+  });
+
+  function SteinDeleteRowsToSheet(config) {
+
+    RED.nodes.createNode(this, config);
+
+    this.current_setting = RED.nodes.getNode(config.apiurl);
+    this.apiurl = this.current_setting.credentials.apiurl;
+
+    var node = this;
+    node.on('input', function (msg) {
+      this.status({ fill: "green", shape: "ring", text: "[" + this.current_setting.name + "] connecting..." });
+
+      const store = new SteinStore(
+        this.apiurl
+      );
+
+      var params = {};
+
+      if (msg.limit) {
+        params.limit = msg.limit;
+      }
+
+      let sheet = config.sheet;
+      if (msg.sheet) {
+        sheet = msg.sheet;
+      }
+
+      params.search = msg.payload.search;
+
+      store
+        .delete(sheet, params)
+        .then(res => {
+          // console.log(res);
+          this.status({ fill: "green", shape: "dot", text: "[" + this.current_setting.name + "] connected" });
+          msg.payload = res;
+          node.send(msg);
+        });
+    });
+  }
+  RED.nodes.registerType("stein-deleterows", SteinDeleteRowsToSheet, {
 
   });
 }
