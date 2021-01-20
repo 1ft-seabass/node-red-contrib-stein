@@ -75,7 +75,7 @@ The node will return Sheet rows data this to the debug node.
 
 ## History
 
-* v0.0.7
+* v0.0.7 - 0.0.8
   * Improved node status to display the detail.
   * Improved node status when connecting color.
   * Changed delete API main param from `payload.search` to `payload`.
