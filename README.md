@@ -75,7 +75,12 @@ The node will return Sheet rows data this to the debug node.
 
 ## History
 
-* v0.0.5
+* v0.0.7
+  * Improved node status to display the detail.
+  * Improved node status when connecting color.
+  * Changed delete API main param from `payload.search` to `payload`.
+    * If needed param is one value, It's assign one value directly to the payload as possible as it can for now.
+* v0.0.5 - v0.0.6
   * Fixed stein-js-client version.
   * The node mistook stein-js-client version between v0.0.3 to v0.0.5. 
 * v0.0.4
@@ -83,7 +88,7 @@ The node will return Sheet rows data this to the debug node.
   * Fixed sheet name behavior.
   * Fixed update API node from `condition` param to `search`.
 * v0.0.3
-  * First release
+  * First release.
 
 ## License
 

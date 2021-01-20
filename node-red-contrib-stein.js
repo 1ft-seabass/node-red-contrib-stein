@@ -20,7 +20,7 @@ module.exports = function (RED) {
 
     var node = this;
     node.on('input', function (msg) {
-      this.status({ fill: "green", shape: "ring", text: "[" + this.current_setting.name + "] connecting..." });
+      this.status({ fill: "blue", shape: "ring", text: "[" + this.current_setting.name + "] connecting..." });
 
       const store = new SteinStore(
         this.apiurl
@@ -61,7 +61,7 @@ module.exports = function (RED) {
 
     var node = this;
     node.on('input', function (msg) {
-      this.status({ fill: "green", shape: "ring", text: "[" + this.current_setting.name + "] connecting..." });
+      this.status({ fill: "blue", shape: "ring", text: "[" + this.current_setting.name + "] connecting..." });
 
       const store = new SteinStore(
         this.apiurl
@@ -85,8 +85,8 @@ module.exports = function (RED) {
       params.search = msg.payload;
 
       store.read(sheet, params).then(data => {
-        console.log("params", params);
-        this.status({ fill: "green", shape: "dot", text: "[" + this.current_setting.name + "] connected" });
+        // console.log("params", params);
+        this.status({ fill: "green", shape: "dot", text: "[" + this.current_setting.name + "] searched count:" + data.length});
         msg.payload = data;
         node.send(msg);
       });
@@ -105,7 +105,7 @@ module.exports = function (RED) {
 
     var node = this;
     node.on('input', function (msg) {
-      this.status({ fill: "green", shape: "ring", text: "[" + this.current_setting.name + "] connecting..." });
+      this.status({ fill: "blue", shape: "ring", text: "[" + this.current_setting.name + "] connecting..." });
 
       const store = new SteinStore(
         this.apiurl
@@ -116,11 +116,20 @@ module.exports = function (RED) {
         sheet = msg.sheet;
       }
 
+      let data;
+      if(Array.isArray(msg.payload)){
+        // Array
+        data = msg.payload;
+      } else {
+        // single Object
+        data = [ msg.payload ];
+      }
+
       store
-        .append(sheet, msg.payload)
+        .append(sheet, data)
         .then(res => {
           // console.log(res);
-          this.status({ fill: "green", shape: "dot", text: "[" + this.current_setting.name + "] connected" });
+          this.status({ fill: "green", shape: "dot", text: "[" + this.current_setting.name + "] updatedRange:" + res.updatedRange });
           msg.payload = res;
           node.send(msg);
         });
@@ -139,17 +148,13 @@ module.exports = function (RED) {
 
     var node = this;
     node.on('input', function (msg) {
-      this.status({ fill: "green", shape: "ring", text: "[" + this.current_setting.name + "] connecting..." });
+      this.status({ fill: "blue", shape: "ring", text: "[" + this.current_setting.name + "] connecting..." });
 
       const store = new SteinStore(
         this.apiurl
       );
 
       var params = {};
-
-      if (msg.sheet) {
-        params.sheet = msg.sheet;
-      }
 
       let sheet = config.sheet;
       if (msg.sheet) {
@@ -165,7 +170,7 @@ module.exports = function (RED) {
         .edit(sheet, params)
         .then(res => {
           // console.log(res);
-          this.status({ fill: "green", shape: "dot", text: "[" + this.current_setting.name + "] connected" });
+          this.status({ fill: "green", shape: "dot", text: "[" + this.current_setting.name + "] totalUpdatedRows:" + res.totalUpdatedRows });
           msg.payload = res;
           node.send(msg);
         });
@@ -184,7 +189,7 @@ module.exports = function (RED) {
 
     var node = this;
     node.on('input', function (msg) {
-      this.status({ fill: "green", shape: "ring", text: "[" + this.current_setting.name + "] connecting..." });
+      this.status({ fill: "blue", shape: "ring", text: "[" + this.current_setting.name + "] connecting..." });
 
       const store = new SteinStore(
         this.apiurl
@@ -201,13 +206,13 @@ module.exports = function (RED) {
         sheet = msg.sheet;
       }
 
-      params.search = msg.payload.search;
+      params.search = msg.payload;
 
       store
         .delete(sheet, params)
         .then(res => {
           // console.log(res);
-          this.status({ fill: "green", shape: "dot", text: "[" + this.current_setting.name + "] connected" });
+          this.status({ fill: "green", shape: "dot", text: "[" + this.current_setting.name + "] clearedRowsCount:" + res.clearedRowsCount });
           msg.payload = res;
           node.send(msg);
         });
