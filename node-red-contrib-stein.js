@@ -42,7 +42,7 @@ module.exports = function (RED) {
       }
 
       store.read(sheet, params).then(data => {
-        this.status({ fill: "green", shape: "dot", text: "[" + this.current_setting.name + "] searched count:" + data.length });
+        this.status({ fill: "green", shape: "dot", text: "[" + this.current_setting.name + "] count:" + data.length });
         msg.payload = data;
         node.send(msg);
       });
@@ -86,7 +86,7 @@ module.exports = function (RED) {
 
       store.read(sheet, params).then(data => {
         // console.log("params", params);
-        this.status({ fill: "green", shape: "dot", text: "[" + this.current_setting.name + "] searched count:" + data.length});
+        this.status({ fill: "green", shape: "dot", text: "[" + this.current_setting.name + "] count:" + data.length});
         msg.payload = data;
         node.send(msg);
       });
