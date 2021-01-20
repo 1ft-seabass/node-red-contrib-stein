@@ -75,11 +75,14 @@ The node will return Sheet rows data this to the debug node.
 
 ## History
 
-* v 0.0.4
+* v0.0.5
+  * Fixed stein-js-client version.
+  * The node mistook stein-js-client version between v0.0.3 to v0.0.5. 
+* v0.0.4
   * Added delete API node.
   * Fixed sheet name behavior.
-  * Fixed update API node about changing `condition` to `search`.  
-* v 0.0.3
+  * Fixed update API node from `condition` param to `search`.
+* v0.0.3
   * First release
 
 ## License
