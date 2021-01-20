@@ -2,7 +2,7 @@
 
 The Node node-red-contrib-stein creates task items using Stein API.
 
-This is simple node for Stein.
+This is simple node for Stein API.
 
 ## Install
 
