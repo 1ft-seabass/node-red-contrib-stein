@@ -5,7 +5,7 @@
       "node-red-contrib-stein": "node-red-contrib-stein.js"
     }
   },
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "The Node node-red-contrib-stein creates task items using Stein API. This is simple node for Stein API.",
   "main": "node-red-contrib-stein.js",
   "scripts": {

@@ -75,6 +75,9 @@ The node will return Sheet rows data this to the debug node.
 
 ## History
 
+* v0.0.9
+  * Added each error handling.
+  * In using stein-js-client changed Promise "then" to wrapped await/async.
 * v0.0.7 - 0.0.8
   * Improved node status to display the detail.
   * Improved node status when connecting color.
